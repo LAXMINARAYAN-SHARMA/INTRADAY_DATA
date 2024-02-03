@@ -22,7 +22,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-    
+      - name: Install Jupyter Notebook
+        run: pip install notebook
+
       - name: Jupyter Notebook Execution
         run: jupyter nbconvert --to notebook --execute MY_DATA_FOR_1MINUTE.ipynb
 
