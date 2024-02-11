@@ -28,7 +28,7 @@ jobs:
         run: pip install notebook
 
       - name: Jupyter Notebook Execution
-        run: jupyter nbconvert --to notebook --execute my_daily_intraday_updater_new_2.ipynb
+        run: jupyter nbconvert --to notebook --execute my_daily_intraday_updater_new_comp.ipynb
 
       - name: Commit files
         run: |
