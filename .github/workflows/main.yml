@@ -28,7 +28,7 @@ jobs:
         run: pip install notebook
 
       - name: Jupyter Notebook Execution
-        run: jupyter nbconvert --to notebook --execute lets_see.ipynb
+        run: jupyter nbconvert --to notebook --execute letsmore.ipynb
 
       - name: Commit files
         run: |
