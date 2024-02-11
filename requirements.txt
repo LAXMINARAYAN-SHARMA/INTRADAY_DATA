@@ -1,4 +1,6 @@
 pandas
 requests
 datetime
+PyGithub
+google-colab
 
