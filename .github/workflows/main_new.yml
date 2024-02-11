@@ -1,0 +1,43 @@
+name: Jupyter
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '* * * * *' 
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Repo Checkout
+        uses: actions/checkout@v2
+
+      - name: Python Setup & Packages Installation
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install openpyxl
+          pip install -r requirements.txt
+
+      - name: Install Jupyter Notebook
+        run: pip install notebook
+
+      - name: Jupyter Notebook Execution
+        run: jupyter nbconvert --to notebook --execute my_daily_intraday_updater.ipynb
+
+      - name: Commit files
+        run: |
+          git config --local user.name actions-user
+          git config --local user.email "actions@github.com"
+          git add .
+          git commit -am "GH ACTION Headlines $(date)"
+          git push origin main
+
+        env:
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+          username: github-actions
